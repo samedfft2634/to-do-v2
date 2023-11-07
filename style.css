@@ -40,6 +40,7 @@ main {
 	/* border: 2px solid green; */
 }
 .inputField #input {
+    position: relative;
 	background: transparent;
 	border: none;
 	width: 80%;
@@ -60,6 +61,7 @@ main {
 	border-top-right-radius: 1.3rem;
 	border-bottom-right-radius: 1.3rem;
 	transition: 0.4s;
+    position: absolute;
 }
 
 .inputField #input:hover {
