@@ -60,28 +60,27 @@ todoListul.addEventListener("change", (e) => {
 	if (e.target.checked) {
 		li.style.textDecoration = "line-through";
 		removeBtn.style.display = "flex";
-        ++checkedTask
+		++checkedTask;
 	} else if ((e.target = "checkbox-wrapper-39")) {
 		li.style.textDecoration = "none";
 		removeBtn.style.display = "none";
-        --checkedTask
+		--checkedTask;
 	}
-    checked.textContent = checkedTask
+	checked.textContent = checkedTask;
 });
-
 
 todoListul.addEventListener("click", (e) => {
 	let delBtn = e.target.closest("li").querySelector(".fa-trash-can");
 	if (e.target == delBtn) {
 		let li = e.target.closest("li");
 		li.classList.add("exit-animation");
-        --totalTask;
-        --checkedTask
+		--totalTask;
+		--checkedTask;
 		setTimeout(() => {
 			li.remove();
-			todoListul.removeChild(li);	
+			todoListul.removeChild(li);
 		}, 2000);
 	}
-    checked.textContent = checkedTask
-    total.textContent = totalTask;
+	checked.textContent = checkedTask;
+	total.textContent = totalTask;
 });
