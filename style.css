@@ -10,7 +10,6 @@ body {
 	background-size: cover;
 	background-position: center;
 	color: #ffdfdb;
-	transition: 0.3s linear;
 	overflow: hidden;
 	min-height: 100vh;
 	display: flex;
@@ -22,7 +21,7 @@ body {
 
 main {
 	/* border: 2px solid red; */
-	width: 40%;
+	width: 40%; 
 }
 
 .title {
@@ -96,6 +95,7 @@ main {
 	color: rgb(247, 226, 223);
 	border-radius: 1.3rem;
 	transition: all 0.4s ease;
+	overflow: hidden;
 }
 .createLi:hover {
 	background-color: #181a1ad3;
@@ -105,6 +105,9 @@ main {
 .fa-trash-can{
     position: absolute;
     right: 10px;
+}
+.fa-trash-can:hover {
+	color: red;
 }
 .checkDiv {
 	display: flex;

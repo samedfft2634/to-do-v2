@@ -17,12 +17,12 @@ let spanDate = document.createElement("span");
 dateTime.appendChild(spanDate);
 spanDate.textContent = date;
 
-let hour = new Date().getHours();
-let minute = new Date().getMinutes();
-let time = `${hour} : ${minute}`;
-let spanTime = document.createElement("span");
-dateTime.appendChild(spanTime);
-spanTime.textContent = time;
+// let hour = new Date().getHours();
+// let minute = new Date().getMinutes();
+// let time = `${hour} : ${minute}`;
+// let spanTime = document.createElement("span");
+// dateTime.appendChild(spanTime);
+// spanTime.textContent = time;
 /* ==================== date and time =================== */
 
 addBtn.addEventListener("click", () => {
@@ -32,11 +32,7 @@ addBtn.addEventListener("click", () => {
 
 const addItem = () => {
 	if (!inputValue.value) {
-		Swal.fire({
-			icon: "error",
-			title: "Oops...",
-			text: "The input field cannot be empty.",
-		});
+		swal();
 	} else {
 		let createLi = document.createElement("li");
 		createLi.className = "createLi";
@@ -84,3 +80,39 @@ todoListul.addEventListener("click", (e) => {
 	checked.textContent = checkedTask;
 	total.textContent = totalTask;
 });
+
+document.querySelector("body").addEventListener("keyup", (e) => {
+	if (e.key === "Enter") {
+		if (!inputValue.value && !inputValue.classList.contains("empty")) {
+			inputValue.focus();
+			inputValue.classList.add("empty");
+		} else if (
+			!inputValue.value &&
+			inputValue.classList.contains("empty")
+		) {
+			swal();
+			inputValue.classList.remove("empty");
+		} else if (inputValue.value) {
+			addItem();
+		}
+	} else if (e.key === "Delete") {
+		let li = document.querySelector(".createLi");
+		if (li) {
+			todoListul.removeChild(li);
+		} else {
+			Swal.fire({
+				icon: "question",
+				title: "Oops...",
+				text: "There is no task to delete!",
+			});	
+		}
+	}
+});
+
+const swal = () => {
+	Swal.fire({
+		icon: "error",
+		title: "Oops...",
+		text: "The input field cannot be empty.",
+	});	
+};
