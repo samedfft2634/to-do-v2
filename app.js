@@ -96,16 +96,7 @@ document.querySelector("body").addEventListener("keyup", (e) => {
 			addItem();
 		}
 	} else if (e.key === "Delete") {
-		let li = document.querySelector(".createLi");
-		if (li) {
-			todoListul.removeChild(li);
-		} else {
-			Swal.fire({
-				icon: "question",
-				title: "Oops...",
-				text: "There is no task to delete!",
-			});	
-		}
+		del()
 	}
 });
 
@@ -116,3 +107,19 @@ const swal = () => {
 		text: "The input field cannot be empty.",
 	});	
 };
+
+const del = () => {
+	let li = document.querySelector(".createLi");
+		if (li && !inputValue.value ) {
+			todoListul.removeChild(li);
+		} else {
+			Swal.fire({
+				position: "center",
+				icon: "question",
+				title: "There is no task to delete!",
+				showConfirmButton: false,
+				timer: 500
+			  });
+		}
+}
+
