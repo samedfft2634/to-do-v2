@@ -4,8 +4,6 @@ const inputValue = document.getElementById("input");
 //
 const checked = document.querySelector(".checked");
 const total = document.querySelector(".total");
-let checkedTask = 0;
-let totalTask = 0;
 
 /* ==================== date and time =================== */
 const dateTime = document.querySelector(".date-time");
@@ -27,7 +25,6 @@ spanDate.textContent = date;
 
 addBtn.addEventListener("click", () => {
 	addItem();
-	total.textContent = totalTask;
 });
 
 const addItem = () => {
@@ -46,7 +43,6 @@ const addItem = () => {
         </div>
         <span class="todoText">${inputValue.value}</span> <i style="display:none" class="fa-solid fa-trash-can"></i> `;
 		inputValue.value = "";
-		++totalTask;
 	}
 };
 
@@ -56,13 +52,10 @@ todoListul.addEventListener("change", (e) => {
 	if (e.target.checked) {
 		li.style.textDecoration = "line-through";
 		removeBtn.style.display = "flex";
-		++checkedTask;
 	} else if ((e.target = "checkbox-wrapper-39")) {
 		li.style.textDecoration = "none";
 		removeBtn.style.display = "none";
-		--checkedTask;
 	}
-	checked.textContent = checkedTask;
 });
 
 todoListul.addEventListener("click", (e) => {
@@ -70,15 +63,11 @@ todoListul.addEventListener("click", (e) => {
 	if (e.target == delBtn) {
 		let li = e.target.closest("li");
 		li.classList.add("exit-animation");
-		--totalTask;
-		--checkedTask;
 		setTimeout(() => {
 			li.remove();
 			todoListul.removeChild(li);
 		}, 2000);
 	}
-	checked.textContent = checkedTask;
-	total.textContent = totalTask;
 });
 
 document.querySelector("body").addEventListener("keyup", (e) => {
@@ -96,8 +85,9 @@ document.querySelector("body").addEventListener("keyup", (e) => {
 			addItem();
 		}
 	} else if (e.key === "Delete") {
-		del()
+		del();
 	}
+
 });
 
 const swal = () => {
@@ -105,21 +95,20 @@ const swal = () => {
 		icon: "error",
 		title: "Oops...",
 		text: "The input field cannot be empty.",
-	});	
+	});
 };
 
 const del = () => {
 	let li = document.querySelector(".createLi");
-		if (li && !inputValue.value ) {
-			todoListul.removeChild(li);
-		} else {
-			Swal.fire({
-				position: "center",
-				icon: "question",
-				title: "There is no task to delete!",
-				showConfirmButton: false,
-				timer: 500
-			  });
-		}
+	if (li && !inputValue.value) {
+		todoListul.lastElementChild.remove();
+	} else {
+		Swal.fire({
+			position: "center",
+			icon: "question",
+			title: "There is no task to delete!",
+			showConfirmButton: false,
+			timer: 500,
+		});
+	}
 }
-
