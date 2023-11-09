@@ -35,10 +35,6 @@ main {
 	align-items: center;
 }
 
-.createLi {
-	width: 600px;
-}
-
 .title {
 	font-size: 96px;
 	width: 100%;
@@ -99,7 +95,17 @@ main {
 	justify-content: center;
 }
 
+.todoText {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: auto;
+}
+
+.todoText::-webkit-scrollbar {
+	display: none;
+}
 .createLi {
+	width: 600px;
 	position: relative;
 	margin-top: 1.5rem;
 	font-size: 2rem;
@@ -113,7 +119,22 @@ main {
 	border-radius: 1.3rem;
 	transition: all 0.4s ease;
 	overflow: hidden;
+	animation: myAnim 2s ease 0s 1 normal forwards;
 }
+@keyframes myAnim {
+	0% {
+	  opacity: 0;
+	  transform: translateY(-50px);
+	}
+  
+	100% {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+  .todoList li {
+	list-style: none;
+  }
 .createLi:hover {
 	background-color: #181a1ad3;
 	transition: all 0.4s ease;
@@ -130,10 +151,6 @@ main {
 	display: flex;
 	gap: 1rem;
 	align-items: center;
-}
-
-.exit-animation {
-	animation: exit 2s ease 0s 1 normal forwards;
 }
 
 .done {
@@ -179,18 +196,6 @@ main {
 	transition: all 0.375s;
 }
 /* checked  */
-
-@keyframes exit {
-	0% {
-		opacity: 1;
-		transform: translateY(0) rotate(0deg);
-	}
-
-	100% {
-		opacity: 0;
-		transform: translateY(250px) rotate(200deg);
-	}
-}
 
 @media (max-width: 600px) {
 	.inputField #input {
